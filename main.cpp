@@ -12,29 +12,33 @@ using namespace std;
 
 int main() {
 
+// variaveis auxiliares
 	char c;
-	CPU_6507 s;
-	
-	cartRom rom;
-	
-	readCart(&rom);
-
-//	c = s.buscaInstrucao(&rom);
-
 	int i;
+	
+
+//classe CPU	
+	CPU_6507 s;
+
+//estrutura da memoria principal
+	memoriaPrincipal memoria;
+
+//função para carregar a rom na memoria principal
+	carregaRom(&memoria);	
+
+
+
+
+// testes
 	for (i=0;i<19;i++){
 		
-		s.decodificaInstrucao(&rom, s.buscaInstrucao(&rom));
+		c = s.buscaInstrucao(memoria);
+		
+		s.decodificaInstrucao(c);
 		
 	}
 
-//	s.decodificaInstrucao(&rom, c);
 
-//	printf("%02x",s.buscaInstrucao(&rom));
-
-
-	//cout << "!!!Hello World!!!" << endl; // prints !!!Hello World!!!
-//	while (cin.get() != '\n');
 	return 0;
 }
 

@@ -1,10 +1,6 @@
-#include "configuracoes.h"
-
-//struct da memoria ROM (cartucho)
- struct cartRom {
+//struct da memoria 
+struct memoriaPrincipal {
 	
-	unsigned char mem[cartTam -1];
-	
-	int actPos;
-	
+	unsigned char bytes[0xFFFF];
+		
 };

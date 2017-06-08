@@ -1,25 +1,19 @@
 #include "configuracoes.h"
 
 using namespace std;
-void readCart(cartRom *rom){
-	
-	rom->actPos =0;
+
+void carregaRom(memoriaPrincipal *memoria){
 	
 	FILE *arq;
 	arq = fopen(romName,"rb");
 	int i;
 	unsigned char c;
 	
-	for (i=0;i<cartTam -1;i++){
-		
+	for(i=0xF000;i<0xFFFF+1;i++){
 		fread(&c,(char)sizeof(char),1,arq);
 		
-		rom->mem[i] = c;
-				
-		
+		memoria->bytes[i] = c;
 	}
-
-
-	fclose(arq);
-
+	
+	
 }

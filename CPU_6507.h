@@ -2,7 +2,7 @@
  * CPU.h
  *
  *  Created on: 5 de jun de 2017
- *      Author: eberr
+ *      Author: eber
  */
  
 
@@ -10,6 +10,7 @@
 
 #ifndef CPU_6507_H_
 #define CPU_6507_H_
+
 
 class CPU_6507 {
 
@@ -21,10 +22,17 @@ public:
 
 	//registradores
 	unsigned char A,X,Y,S,PC;
+	
+	//apontador para a posição atual da memoria;
+	int memPointer = 0xF000;
 
-	unsigned char buscaInstrucao(struct cartRom *rom);
 
-	void decodificaInstrucao(cartRom *rom, unsigned char c);
+	//construtor
+	CPU_6507();
+	
+	unsigned char buscaInstrucao(struct memoriaPrincipal memoria);
+
+	void decodificaInstrucao(unsigned char c);
 
 	void executa();
 
