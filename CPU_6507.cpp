@@ -27,25 +27,86 @@ unsigned char CPU_6507::buscaInstrucao(struct memoriaPrincipal memoria){
 
 // apenas teses ainda
 void CPU_6507::decodificaInstrucao(unsigned char c){
+		printf("%02X  ",c);
 	
-	
-	printf("%02X  ",c);
-	
-if (c == 0x4C){
-	
-	printf("JMP Absolute\n");
-	this->memPointer++;
-	this->memPointer++;
+	switch (c){
+		
+		
+	/**************************
+	 * ADC (ADd with Carry)
+	 * Affects Flags: S V Z C
+	 *************************/
 
-}
-
-
-if (c == 0xA2){
+	//mode imediate Len 2 Tim 2
+	case 0x69:
+		printf("ADC (ADd with Carry) mode imediate Len 2 Tim 2\n");
+		this->memPointer++;
+		break;
 	
-	printf("LDX imediate\n");
-	this->memPointer++;
+	//mode Zero Page Len 2 Tim 3
+	case 0x65:
+		printf("ADC (ADd with Carry) mode Zero Page Len 2 Tim 3\n");
+		this->memPointer++;
+		break;
 
-}
+	//mode Zero Page,X Len 2 Tim 4
+	case 0x75:
+		printf("ADC (ADd with Carry) mode Zero Page,X Len 2 Tim 4\n");
+		this->memPointer++;
+		break;
+		
+	//mode Absolute Len 3 Tim 4
+	case 0x6D:
+		printf("ADC (ADd with Carry) mode Absolute Len 3 Tim 4\n");
+		this->memPointer++;
+		break;
+		
+	//mode Absolute,X Len 3 Tim 4+
+	case 0x7D:
+		printf("ADC (ADd with Carry) mode Absolute,X Len 3 Tim 4+\n");
+		this->memPointer++;
+		break;
+		
+	//mode Absolute,Y Len 3 Tim 4
+	case 0x79:
+		printf("ADC (ADd with Carry) mode Absolute,Y Len 3 Tim 4+\n");
+		this->memPointer++;
+		break;
+		
+	//mode Indirect,X Len 2 Tim 6
+	case 0x61:
+		printf("ADC (ADd with Carry) mode Indirect,X Len 2 Tim 6\n");
+		this->memPointer++;
+		break;
+		
+	//mode Indirect,Y Len 2 Tim 5+
+	case 0x71:
+		printf("ADC (ADd with Carry) mode Indirect,Y Len 2 Tim 5+\n");
+		this->memPointer++;
+		break;
+		
+		
+		
+		
+		
+		
+		
+		
+		case 0x4C:
+			printf("JMP Absolute\n");
+			this->memPointer++;
+			this->memPointer++;
+		break;
+		
+		
+		case 0xA2:	
+			printf("LDX imediate\n");
+			this->memPointer++;
+		break;
+	}
+	
+
+
 
 if (c == 0x85){
 	

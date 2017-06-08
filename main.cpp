@@ -13,7 +13,7 @@ using namespace std;
 int main() {
 
 // variaveis auxiliares
-	char c;
+	unsigned char c;
 	int i;
 	
 
