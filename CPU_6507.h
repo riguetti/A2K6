@@ -10,29 +10,32 @@
 
 #ifndef CPU_6507_H_
 #define CPU_6507_H_
+#include <stdint.h>
 
-
+using namespace std;
 class CPU_6507 {
 
 
 public:
 
 	//flags (NV-BDIZC);
-	unsigned char N,V,D,I,Z,C;
+	uint8_t N,V,D,I,Z,C;
 
 	//registradores
-	unsigned char A,X,Y,S,PC;
+	uint8_t A,X,Y,S,PC;
 	
 	//apontador para a posição atual da memoria;
-	int memPointer = 0xF000;
+	uint16_t memPointer;
 
+	//ponteiro para a memoria
+	struct memoriaPrincipal *memoria;
 
 	//construtor
-	CPU_6507();
+	CPU_6507(memoriaPrincipal *mem);
 	
-	unsigned char buscaInstrucao(struct memoriaPrincipal memoria);
+	uint8_t buscaInstrucao();
 
-	void decodificaInstrucao(unsigned char c);
+	void decodificaInstrucao(uint8_t c);
 
 	void executa();
 

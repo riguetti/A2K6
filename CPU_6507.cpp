@@ -8,17 +8,22 @@
 #include "CPU_6507.h"
 #include "estruturas.h"
 #include <stdio.h>
+#include <stdint.h>
 
 using namespace std;
 
- CPU_6507::CPU_6507(){
-//	this->memPointer = 0xF000;
+ CPU_6507::CPU_6507(memoriaPrincipal *mem){
+ 	
+ 	this->memoria = mem;
+	this->memPointer = 0xF000;
 }
 
-unsigned char CPU_6507::buscaInstrucao(struct memoriaPrincipal memoria){
+uint8_t CPU_6507::buscaInstrucao(){
 
- 	unsigned char c;
- 	c = memoria.bytes[this->memPointer];
+ 	uint8_t c;
+ //	c = memoria.bytes[this->memPointer];
+ 
+ 	c = this->memoria->bytes[this->memPointer];
  	this->memPointer++;
  	return c;
 
@@ -26,7 +31,7 @@ unsigned char CPU_6507::buscaInstrucao(struct memoriaPrincipal memoria){
 
 
 // apenas teses ainda
-void CPU_6507::decodificaInstrucao(unsigned char c){
+void CPU_6507::decodificaInstrucao(uint8_t c){
 		printf("%02X  ",c);
 	
 	switch (c){
@@ -90,13 +95,49 @@ void CPU_6507::decodificaInstrucao(unsigned char c){
 		
 		
 		
+	/**************************
+	 * JMP (JuMP)
+	 * Affects Flags: none
+	 *************************/
 		
 		
+		//mode Absolute Len 3 Tim 3
 		case 0x4C:
-			printf("JMP Absolute\n");
+		printf("JMP (JuMP) mode Absolute Len 3 Tim 3\n");
+		
+			uint8_t adressFim;
+			uint8_t adressIni;
+			
+			// carrega os dois proximos bytes que representam o endereço da mémoria
+			adressFim = this->buscaInstrucao();
+			adressIni = this->buscaInstrucao();
+
+			// seta o memPointer com o novo valor da memoria
+			this->memPointer = adressIni << 8;
+			this->memPointer = this->memPointer | adressFim;
+			
+
+		break;
+		
+		//mode Indirect Len 3 Tim 5
+		case 0x6C:
+		printf("JMP (JuMP) mode Indirect Len 3 Tim 5\n");
 			this->memPointer++;
 			this->memPointer++;
 		break;
+		
+		
+
+
+
+
+
+
+
+
+
+
+
 		
 		
 		case 0xA2:	

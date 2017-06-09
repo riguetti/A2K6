@@ -1,6 +1,6 @@
 //struct da memoria 
 struct memoriaPrincipal {
 	
-	unsigned char bytes[0xFFFF];
+	uint8_t bytes[0xFFFF];
 		
 };
