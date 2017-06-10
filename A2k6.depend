@@ -1,0 +1,28 @@
+# depslib dependency file v1.0
+1497054682 source:c:\users\eberr\desktop\git\a2k6\cpu_6507.cpp
+	"CPU_6507.h"
+	"estruturas.h"
+	<stdio.h>
+	<stdint.h>
+
+1497054235 c:\users\eberr\desktop\git\a2k6\cpu_6507.h
+	<stdint.h>
+
+1497048631 c:\users\eberr\desktop\git\a2k6\estruturas.h
+
+1497054910 source:c:\users\eberr\desktop\git\a2k6\main.cpp
+	<stdio.h>
+	<iostream>
+	<stdint.h>
+	"CPU_6507.h"
+	"estruturas.h"
+	"configuracoes.h"
+	"funcoes.h"
+
+1497048631 c:\users\eberr\desktop\git\a2k6\configuracoes.h
+
+1497049686 c:\users\eberr\desktop\git\a2k6\funcoes.h
+	"configuracoes.h"
+	<string.h>
+	<stdlib.h>
+
