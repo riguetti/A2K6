@@ -256,45 +256,102 @@ void CPU_6507::decodificaInstrucao(uint8_t c){
 	*************************/
         //CLC (CLear Carry)
 		case 0x18:
-		//printf("CLC (CLear Carry) Flag Instructions\n");
+		printf("CLC (CLear Carry) Flag Instructions\n");
 		this->clearFlag('C');
 		break;
 
         //SEC (SEt Carry)
 		case 0x38:
-		//printf("SEC (SEt Carry) Flag Instructions\n");
+		printf("SEC (SEt Carry) Flag Instructions\n");
 		this->setFlag('C');
 		break;
 
         //CLI (CLear Interrupt)
 		case 0x58:
-		//printf("CLI (CLear Interrupt) Flag Instructions\n");
+		printf("CLI (CLear Interrupt) Flag Instructions\n");
 		this->clearFlag('I');
 		break;
 
 		//SEI (SEt Interrupt)
 		case 0x78:
-		//printf("SEI (SEt Interrupt) Flag Instructions\n");
+		printf("SEI (SEt Interrupt) Flag Instructions\n");
 		this->setFlag('I');
 		break;
 
         //CLV (CLear oVerflow)
 		case 0xB8:
-		//printf("CLV (CLear oVerflow) Flag Instructions\n");
+		printf("CLV (CLear oVerflow) Flag Instructions\n");
 		this->clearFlag('V');
 		break;
 
 		//CLD (CLear Decimal)
 		case 0xD8:
-		//printf("CLD (CLear Decimal) Flag Instructions\n");
+		printf("CLD (CLear Decimal) Flag Instructions\n");
 		this->clearFlag('D');
 		break;
 
 
 		//SED (SEt Decimal)
 		case 0xF8:
-		//printf("SED (SEt Decimal) Flag Instructions\n");
+		printf("SED (SEt Decimal) Flag Instructions\n");
 		this->setFlag('D');
+		break;
+
+
+    /**************************
+	* Register Instructions
+	* Affects Flags: S Z
+	*************************/
+
+        //TAX (Transfer A to X)
+		case 0xAA:
+		printf("TAX (Transfer A to X) Register Instructions\n");
+        this->X = this->A;
+		break;
+
+        //TXA (Transfer X to A)
+		case 0x8A:
+		printf("TXA (Transfer X to A) Register Instructions\n");
+        this->A = this->X;
+		break;
+
+        //DEX (DEcrement X)
+		case 0xCA:
+		printf("DEX (DEcrement X) Register Instructions\n");
+        this->X--;
+		break;
+
+        //INX (INcrement X)
+		case 0xE8:
+		printf("INX (INcrement X) Register Instructions\n");
+        this->X++;
+		break;
+
+        //TAY (Transfer A to Y)
+		case 0xA8:
+		printf("TAY (Transfer A to Y) Register Instructions\n");
+        this->Y = this->A;
+		break;
+
+
+        //TYA (Transfer Y to A)
+		case 0x98:
+		printf("TYA (Transfer Y to A) Register Instructions\n");
+        this->A = this->Y;
+		break;
+
+
+
+        //DEX (DEcrement Y)
+		case 0x88:
+		printf("DEY (DEcrement Y) Register Instructions\n");
+        this->Y--;
+		break;
+
+        //INX (INcrement Y)
+		case 0xC8:
+		printf("INY (INcrement Y) Register Instructions\n");
+        this->Y++;
 		break;
 
 

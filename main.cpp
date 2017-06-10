@@ -39,11 +39,21 @@ int main() {
 
 
 
-	for (i=0;i<19;i++){
+	for (i=0;i<6;i++){
 
 		c = s.buscaInstrucao();
-
 		s.decodificaInstrucao(c);
+
+		printf("flags: %s",byte_to_binary(s.flags));
+		printf("  ");
+		printf("A: %02X",s.A);
+
+        printf("  ");
+		printf("X: %02X",s.X);
+
+        printf("  ");
+		printf("Y: %02X\n",s.Y);
+		printf("\n");
 
 	}
 
