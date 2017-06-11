@@ -1,1 +1,1 @@
-#define romName "./rom/rom.a26"
+#define romName "./rom/rom.test"

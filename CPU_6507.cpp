@@ -124,14 +124,18 @@ this->flags = this->flags & 0x7F;
 
 
 
+void CPU_6507::escreveMemoria(uint8_t addr, uint8_t value){
+
+this->memoria->bytes[addr] = value;
+
+}
+
 
 
 
 uint8_t CPU_6507::buscaInstrucao(){
 
  	uint8_t c;
- //	c = memoria.bytes[this->memPointer];
-
  	c = this->memoria->bytes[this->memPointer];
  	this->memPointer++;
  	return c;
@@ -139,9 +143,19 @@ uint8_t CPU_6507::buscaInstrucao(){
 }
 
 
+
+
 // apenas teses ainda
 void CPU_6507::decodificaInstrucao(uint8_t c){
+
 		printf("%02X  ",c);
+
+
+	//variaveis auxiliares
+    uint8_t adressFim;
+	uint8_t adressIni;
+	uint16_t adress;
+
 
 	switch (c){
 
@@ -214,8 +228,7 @@ void CPU_6507::decodificaInstrucao(uint8_t c){
 		case 0x4C:
 		printf("JMP (JuMP) mode Absolute Len 3 Tim 3\n");
 
-			uint8_t adressFim;
-			uint8_t adressIni;
+
 
 			// carrega os dois proximos bytes que representam o endereço da mémoria
 			adressFim = this->buscaInstrucao();
@@ -358,9 +371,89 @@ void CPU_6507::decodificaInstrucao(uint8_t c){
 
 
 
+
+    /**************************
+	* STA (STore Accumulator)
+	* Affects Flags: none
+	(salva o valor do acumulador na memória)
+	*************************/
+
+        //modo Zero page
+		case 0x85:
+
+		    printf("STA (STore Accumulator) Zero Page\n");
+
+            adress = 0x00 << 8;
+            adress = adress | this->buscaInstrucao();
+            this->escreveMemoria(adress,this->A);
+            break;
+
+        //modo Zero Page,X
+		case 0x95:
+
+		    printf("STA (STore Accumulator) Zero Page X\n");
+
+            adress = 0x00 << 8;
+            adress = adress | (this->buscaInstrucao() + this->X);
+            this->escreveMemoria(adress,this->A);
+            break;
+
+        //modo Absolute
+		case 0x8D:
+
+		    printf("STA (STore Accumulator) Absolute\n");
+
+		    adressFim = this->buscaInstrucao();
+			adressIni = this->buscaInstrucao();
+			adress = adressIni << 8;
+			adress = adress | adressFim;
+            this->escreveMemoria(adress,this->A);
+            break;
+
+        //modo Absolute, X
+		case 0x9D:
+
+		    printf("STA (STore Accumulator) Absolute, X\n");
+
+		    adressFim = this->buscaInstrucao();
+			adressIni = this->buscaInstrucao();
+            adress = adressIni << 8;
+            adress = adress | (adressFim + this->X);
+            this->escreveMemoria(adress,this->A);
+            break;
+
+
+        //modo Absolute, Y
+		case 0x99:
+
+		    printf("STA (STore Accumulator) Absolute, Y\n");
+
+		    adressFim = this->buscaInstrucao();
+			adressIni = this->buscaInstrucao();
+            adress = adressIni << 8;
+            adress = adress | (adressFim + this->Y);
+            this->escreveMemoria(adress,this->A);
+            break;
+
+
+
+
+
+
+
+
+		case 0xA9:
+		    printf("LDA imediate\n");
+			this->A = this->buscaInstrucao();
+		//	this->memPointer++;
+		break;
+
+
+
 		case 0xA2:
-			printf("LDX imediate\n");
-			this->memPointer++;
+		    printf("LDX imediate\n");
+			this->X = this->buscaInstrucao();
+		//	this->memPointer++;
 		break;
 
 

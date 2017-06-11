@@ -58,6 +58,11 @@ int main() {
 	}
 
 
+	for (i=0;i<20;i++){
+        printf("%04X:  ",i);
+        printf("%02X\n",s.memoria->bytes[i]);
+	}
+
 	return 0;
 }
 

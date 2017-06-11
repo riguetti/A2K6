@@ -33,6 +33,8 @@ public:
 	//construtor
 	CPU_6507(memoriaPrincipal *mem);
 
+
+	void escreveMemoria(uint8_t addr, uint8_t value);
 	uint8_t buscaInstrucao();
 
 	void decodificaInstrucao(uint8_t c);
