@@ -21,7 +21,7 @@ int main() {
 
 
 //estrutura da memoria principal
-	memoriaPrincipal memoria;
+    memoriaPrincipal memoria;
 
 
 	//classe CPU
@@ -35,6 +35,7 @@ int main() {
 
 // testes
 
+s.memoria->bytes[0x0006] = 0x12;
 
 
 
@@ -56,6 +57,8 @@ int main() {
 		printf("\n");
 
 	}
+
+
 
 
 	for (i=0;i<20;i++){

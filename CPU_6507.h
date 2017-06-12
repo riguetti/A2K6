@@ -34,7 +34,9 @@ public:
 	CPU_6507(memoriaPrincipal *mem);
 
 
-	void escreveMemoria(uint8_t addr, uint8_t value);
+	void escreveMemoria(uint16_t addr, uint8_t value);
+	uint8_t leMemoria(uint16_t addr);
+
 	uint8_t buscaInstrucao();
 
 	void decodificaInstrucao(uint8_t c);
