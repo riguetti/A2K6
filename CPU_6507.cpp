@@ -18,6 +18,8 @@
 
         this->memPointer = 0xF000;
 
+        this->
+
 
     }
 
@@ -75,7 +77,7 @@
 
 
 
-    //Seta as flags
+    //Limpa as flags
     void CPU_6507::clearFlag(char flag){
 
     switch (flag){
@@ -474,6 +476,33 @@
                 break;
 
 
+
+            //modo Indirect, Y
+            case 0x91:
+
+                printf("STA (STore Accumulator) Indirect, Y\n");
+
+
+                        //carrega o low byte do endereço
+                    adressIni = buscaInstrucao();
+
+                    // soma com x
+                    adressIni += this->Y;
+
+                    //faz o zero page do endereço
+                    zeroPage = 0x00 << 8;
+                    zeroPage = zeroPage | adressIni;
+
+                    //carrega os valores nos endereços
+                    adressFim = leMemoria(zeroPage);
+                    zeroPage++;
+                    adressIni = leMemoria(zeroPage);
+
+                    //salva o valor do acumulador no endereço lido
+                    adress = adressIni << 8;
+                    adress = adress | (adressFim);
+                    this->escreveMemoria(adress, this->A);
+                break;
 
 
 

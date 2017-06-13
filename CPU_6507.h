@@ -18,11 +18,11 @@ class CPU_6507 {
 
 public:
 
-	//flags (NV-BDIZC);
+	//flags (NV-BDIZC) (Processor Status);
 	uint8_t flags;
 
 	//registradores
-	uint8_t A,X,Y,S,PC;
+	uint8_t A,X,Y,StackPointer;
 
 	//apontador para a posição atual da memoria;
 	uint16_t memPointer;
