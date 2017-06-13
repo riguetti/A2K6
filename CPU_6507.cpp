@@ -18,7 +18,6 @@
 
         this->memPointer = 0xF000;
 
-        this->
 
 
     }
