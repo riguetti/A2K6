@@ -16,7 +16,7 @@
 
         this->memoria = mem;
 
-        this->memPointer = 0xF000;
+        this->memPointer = 0x10000; //memoria endereÃ§ada de 0 a FFFF
 
 
 
@@ -240,7 +240,7 @@
 
 
 
-                // carrega os dois proximos bytes que representam o endereço da mémoria
+                // carrega os dois proximos bytes que representam o endereÃ§o da mÃ©moria
                 adressFim = this->buscaInstrucao();
                 adressIni = this->buscaInstrucao();
 
@@ -254,7 +254,7 @@
             //mode Indirect Len 3 Tim 5
             case 0x6C:
             printf("JMP (JuMP) mode Indirect Len 3 Tim 5\n");
-                // carrega os dois proximos bytes que representam o endereço da mémoria
+                // carrega os dois proximos bytes que representam o endereÃ§o da mÃ©moria
                 adressFim = this->buscaInstrucao();
                 adressIni = this->buscaInstrucao();
 
@@ -262,7 +262,7 @@
                 this->memPointer = adressIni << 8;
                 this->memPointer = this->memPointer | adressFim;
 
-                // carrega os dois proximos bytes que representam o endereço da mémoria
+                // carrega os dois proximos bytes que representam o endereÃ§o da mÃ©moria
                 adressFim = this->buscaInstrucao();
                 adressIni = this->buscaInstrucao();
 
@@ -385,7 +385,7 @@
         /**************************
         * STA (STore Accumulator)
         * Affects Flags: none
-        (salva o valor do acumulador na memória)
+        (salva o valor do acumulador na memÃ³ria)
         *************************/
 
             //modo Zero page
@@ -453,22 +453,22 @@
                 printf("STA (STore Accumulator) Indirect, X\n");
 
 
-                        //carrega o low byte do endereço
+                        //carrega o low byte do endereÃ§o
                     adressIni = buscaInstrucao();
 
                     // soma com x
                     adressIni += this->X;
 
-                    //faz o zero page do endereço
+                    //faz o zero page do endereÃ§o
                     zeroPage = 0x00 << 8;
                     zeroPage = zeroPage | adressIni;
 
-                    //carrega os valores nos endereços
+                    //carrega os valores nos endereÃ§os
                     adressFim = leMemoria(zeroPage);
                     zeroPage++;
                     adressIni = leMemoria(zeroPage);
 
-                    //salva o valor do acumulador no endereço lido
+                    //salva o valor do acumulador no endereÃ§o lido
                     adress = adressIni << 8;
                     adress = adress | (adressFim);
                     this->escreveMemoria(adress, this->A);
@@ -482,22 +482,22 @@
                 printf("STA (STore Accumulator) Indirect, Y\n");
 
 
-                        //carrega o low byte do endereço
+                        //carrega o low byte do endereÃ§o
                     adressIni = buscaInstrucao();
 
                     // soma com x
                     adressIni += this->Y;
 
-                    //faz o zero page do endereço
+                    //faz o zero page do endereÃ§o
                     zeroPage = 0x00 << 8;
                     zeroPage = zeroPage | adressIni;
 
-                    //carrega os valores nos endereços
+                    //carrega os valores nos endereÃ§os
                     adressFim = leMemoria(zeroPage);
                     zeroPage++;
                     adressIni = leMemoria(zeroPage);
 
-                    //salva o valor do acumulador no endereço lido
+                    //salva o valor do acumulador no endereÃ§o lido
                     adress = adressIni << 8;
                     adress = adress | (adressFim);
                     this->escreveMemoria(adress, this->A);
