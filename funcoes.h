@@ -1,5 +1,5 @@
 #include "configuracoes.h"
-
+//teste ---
 using namespace std;
 
 void carregaRom(memoriaPrincipal *memoria){
