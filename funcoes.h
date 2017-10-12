@@ -19,6 +19,7 @@ void carregaRom(memoriaPrincipal *memoria){
 }
 
 
+//função apenas para debugar!!!!!!!!!!!!!
 //imprime um byte na tela
 #include <string.h>     /* strcat */
 #include <stdlib.h>     /* strtol */

@@ -35,36 +35,21 @@ int main() {
 
 // testes
 
-s.memoria->bytes[0x0006] = 0x12;
 
 
 
 
-	for (i=0;i<6;i++){
+
+	for (i=0;i<100;i++){
 
 		c = s.buscaInstrucao();
 		s.decodificaInstrucao(c);
 
-		printf("flags: %s",byte_to_binary(s.flags));
-		printf("  ");
-		printf("A: %02X",s.A);
-
-        printf("  ");
-		printf("X: %02X",s.X);
-
-        printf("  ");
-		printf("Y: %02X\n",s.Y);
-		printf("\n");
 
 	}
 
 
 
-
-	for (i=0;i<20;i++){
-        printf("%04X:  ",i);
-        printf("%02X\n",s.memoria->bytes[i]);
-	}
 
 	return 0;
 }

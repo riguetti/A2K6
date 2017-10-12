@@ -154,7 +154,7 @@
 
 
 
-    // apenas teses ainda
+    // Algumas instruções ja cadastradas
     void CPU_6507::decodificaInstrucao(uint8_t c){
 
             printf("%02X  ",c);
