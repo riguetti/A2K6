@@ -508,6 +508,23 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             case 0xA9:
                 printf("LDA imediate\n");
                 this->A = this->buscaInstrucao();
